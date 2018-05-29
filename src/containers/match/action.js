@@ -1,7 +1,6 @@
 export const ADD_MATCH = 'ADD_MATCH';
 export const UPDATE_MATCH = 'UPDATE_MATCH';
 export const DELETE_MATCH = 'DELETE_MATCH';
-export const GET_MATCHES_BY_COMPETITION = 'GET_MATCHES_BY_COMPETITION';
 
 export function addMatch(competitionId, matchid, team1, team2, date){
 	return{

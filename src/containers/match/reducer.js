@@ -16,14 +16,14 @@ export default function(state=defaultState, action){
 			return{
 				...state,
 				matches: state.matches.map(item => item.id ===
-					action.id ? action.payload: item)
+					action.payload.id && item.competitionId === action.payload.competitionId ? action.payload: item)
 			}
 		}
 		case DELETE_MATCH:{
 			return{
 				...state,
 				matches: state.matches.filter(item =>
-					item.id !== action.id)
+					item.id !== action.id && item.competitionId !== action.payload.competitionId)
 			}
 		}
 		default:{

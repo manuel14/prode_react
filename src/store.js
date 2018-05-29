@@ -26,4 +26,7 @@ store.dispatch(addCompetition(1, "Mundial", 32));
 store.dispatch(addCompetition(2, "Nba", 32));
 store.dispatch(updateCompetition(2, "Nba", 50));
 store.dispatch(addMatch(1, 0, "arg", "isl", "01-01-2018"));
+store.dispatch(updateMatch(1, 0, "arg", "isl", "03-01-2018"));
+store.dispatch(deleteMatch(1, 0));
+store.dispatch(addMatch(1, 0, "bra", "pol", "01-01-2018"));
 unsubscribe();
