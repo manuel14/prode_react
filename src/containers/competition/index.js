@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {getCompetitions} from './action';
+import { getCompetitions } from './action';
 import {
     Table,
     TableBody,
@@ -8,15 +8,18 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-  } from './';
+} from '../../components';
 
 class Competition extends Component {
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount(){
         this.props.onLoad();
     }
-
     render() {
-        return (
+        
+        return this.props.items ? (
             <Table>
                 <TableHead>
                     <TableRow>
@@ -32,26 +35,29 @@ class Competition extends Component {
                     </TableRow>
 
                 </TableHead>
-                {pageData => (
-                    <TableBody>
-                        {pageData.map(item => (
-                            <TableRow key={item.id}>
-                                <TableData>{item.name}</TableData>
-                                <TableData>
-                                    {item.teams}
-                                </TableData>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                )}
+                <TableBody>
+                    {this.props.items.map(competition => (
+                        <TableRow key={competition.id}>
+                            <TableData>{competition.id}</TableData>
+                            <TableData>{competition.name}</TableData>
+                            <TableData>
+                                {competition.teams}
+                            </TableData>
+                        </TableRow>
+                    ))}
+                </TableBody>
+
             </Table>
+        ):
+        (
+            <h1>ladero</h1>
         )
     }
 }
 
 
 const mapStateToProps = state => ({
-    ...state.competitions,
+    ...state.items
 });
 
 const mapDispatchToProps = dispatch => ({

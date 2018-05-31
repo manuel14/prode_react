@@ -34,7 +34,6 @@ export function competitionRequest(){
 
 export const COMPETITION_RESPONSE = 'COMPETITION_RESPONSE';
 export function competitionResponse(response){
-	console.log(response);
 	return{
 		type: COMPETITION_RESPONSE,
 		response

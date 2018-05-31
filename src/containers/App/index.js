@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Competition} from '../competition';
+import Competition from '../competition';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-		};
 	}
-
-	componentDidMount() {
-		this.props.onLoad();
-	}
-
 	render() {
-		return(
-			<div className="Prode">
-				<Competition competitions={this.state.competitions}/>
+		return (
+			<div className="App">
+				<Competition />
 			</div>
-		)
+		);
 	}
 }
 
@@ -27,7 +20,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	dispatch
+	dispatch,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
