@@ -1,10 +1,9 @@
-import {ADD_COMPETITION, UPDATE_COMPETITION, DELETE_COMPETITION, GET_MATCHES} from './action';
-
-const defaultState ={
+import {ADD_COMPETITION, UPDATE_COMPETITION, DELETE_COMPETITION, COMPETITION_REQUEST, COMPETITION_RESPONSE} from './action';
+const defaultState = {
 	competitions: []
-}
+};
 
-export default function(state=defaultState, action){
+export default function Competition(state=defaultState, action){
 	switch(action.type){
 		case ADD_COMPETITION:{
 			return{
@@ -24,6 +23,18 @@ export default function(state=defaultState, action){
 				...state,
 				competitions: state.competitions.filter(item =>
 					item.id !== action.payload.id)
+			}
+		}
+		case COMPETITION_RESPONSE:{
+			const competitions = action.response;
+			return{
+				...state,
+				competitions
+			}
+		}
+		case COMPETITION_REQUEST:{
+			return{
+				...state
 			}
 		}
 		default:{

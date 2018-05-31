@@ -1,11 +1,12 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from './reducer';
-import {addCompetition, updateCompetition, deleteCompetition} from './containers/competition/action';
-import {addMatch, updateMatch, deleteMatch} from './containers/match/action';
+import thunk from 'redux-thunk';
+import {addCompetition, updateCompetition, deleteCompetition, getCompetitions} from './containers/competition/action';
+import {addMatch, updateMatch, deleteMatch, getMatches} from './containers/match/action';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const middlewares = [];
+const middlewares = [thunk];
 
 const enhancers = [applyMiddleware(...middlewares)];
 
@@ -29,4 +30,7 @@ store.dispatch(addMatch(1, 0, "arg", "isl", "01-01-2018"));
 store.dispatch(updateMatch(1, 0, "arg", "isl", "03-01-2018"));
 store.dispatch(deleteMatch(1, 0));
 store.dispatch(addMatch(1, 0, "bra", "pol", "01-01-2018"));
+store.dispatch(getCompetitions());
 unsubscribe();
+
+export default store;

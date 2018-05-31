@@ -1,4 +1,4 @@
-import {ADD_MATCH, UPDATE_MATCH, DELETE_MATCH} from './action';
+import {ADD_MATCH, UPDATE_MATCH, DELETE_MATCH, MATCH_REQUEST, MATCH_RESPONSE} from './action';
 
 const defaultState = {
 	matches: []
@@ -24,6 +24,18 @@ export default function(state=defaultState, action){
 				...state,
 				matches: state.matches.filter(item =>
 					item.id !== action.id && item.competitionId !== action.payload.competitionId)
+			}
+		}
+		case MATCH_RESPONSE:{
+			const matches = action.response;
+			return{
+				...state,
+				matches
+			}
+		}
+		case MATCH_REQUEST:{
+			return{
+				...state
 			}
 		}
 		default:{
