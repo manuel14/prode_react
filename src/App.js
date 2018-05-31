@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import store from './store'
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import store from "./store";
 
 class App extends Component {
   render() {
@@ -12,9 +12,9 @@ class App extends Component {
           <h2>Welcome to sadasReact</h2>
         </div>
         <ul>
-          {store.getState().competitions.map(competition =>
-              <li>{competition.name}</li>
-            )}
+          {store
+            .getState()
+            .competitions.map(competition => <li>{competition.name}</li>)}
         </ul>
       </div>
     );
