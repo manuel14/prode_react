@@ -1,7 +1,7 @@
-import 'whatwg-fetch';
-import { omitBy, isNil } from 'lodash';
-import downloadjs from 'downloadjs';
-import {api_url} from './backend_config';
+import "whatwg-fetch";
+import { omitBy, isNil } from "lodash";
+import downloadjs from "downloadjs";
+import { api_url } from "./backend_config";
 
 function parseJSON(response) {
   return response.status !== 204 && response.json();
@@ -29,8 +29,8 @@ function checkStatus(response) {
 
 function getHeaders(contentType) {
   const headers = {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
+    "Content-Type": "application/json"
   };
   return headers;
 }
@@ -39,7 +39,7 @@ export function request(url, options) {
   const cleanOptions = omitBy(options, isNil);
   const fetchOptions = {
     ...cleanOptions,
-    credentials: 'same-origin',
+    credentials: "same-origin"
   };
   return fetch(url, fetchOptions)
     .then(checkStatus)
@@ -49,35 +49,37 @@ export function request(url, options) {
 export function post(url, body) {
   const cleanBody = omitBy(body, isNil);
   return request(url, {
-    method: 'POST',
+    method: "POST",
     headers: getHeaders(),
-    body: JSON.stringify(cleanBody),
+    body: JSON.stringify(cleanBody)
   });
 }
 
 export function get(url, params) {
-  const url_hard = api_url
+  const url_hard = api_url;
   const urlParams = encodeQueryData(omitBy(params, isNil));
-  const urlStr = urlParams ? `${url_hard}${url}?${urlParams}` : `${url_hard}${url}`;
+  const urlStr = urlParams
+    ? `${url_hard}${url}?${urlParams}`
+    : `${url_hard}${url}`;
   return request(urlStr, {
-    method: 'GET',
-    headers: getHeaders(),
+    method: "GET",
+    headers: getHeaders()
   });
 }
 
 export function remove(url) {
   return request(url, {
-    method: 'DELETE',
-    headers: getHeaders(),
+    method: "DELETE",
+    headers: getHeaders()
   });
 }
 
 export function put(url, body) {
   const cleanBody = omitBy(body, isNil);
   return request(url, {
-    method: 'PUT',
+    method: "PUT",
     headers: getHeaders(),
-    body: JSON.stringify(cleanBody),
+    body: JSON.stringify(cleanBody)
   });
 }
 
@@ -85,9 +87,9 @@ export function getFile(url, params, fileName) {
   const urlParams = encodeQueryData(omitBy(params, isNil));
   const urlStr = urlParams ? `${url}?${urlParams}` : `${url}`;
   return fetch(urlStr, {
-    method: 'GET',
+    method: "GET",
     headers: getHeaders(),
-    credentials: 'same-origin',
+    credentials: "same-origin"
   })
     .then(checkStatus)
     .then(parseBlob)
@@ -99,5 +101,5 @@ function encodeQueryData(data) {
   Object.keys(data).forEach(key => {
     ret.push(`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`);
   });
-  return ret.join('&');
+  return ret.join("&");
 }

@@ -11,9 +11,6 @@ import {
 } from "../../components";
 
 class Competition extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.onLoad();
   }
@@ -44,7 +41,7 @@ class Competition extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.items
+  ...state.competitionReducer
 });
 
 const mapDispatchToProps = dispatch => ({
